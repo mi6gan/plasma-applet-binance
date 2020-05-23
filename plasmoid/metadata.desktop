@@ -1,0 +1,17 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Binance Monitor
+Comment=View binance tickers online
+Type=Service
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+
+X-KDE-PluginInfo-Author=Mikhail Boyarov
+X-KDE-PluginInfo-Email=mi6gan@mail.ru
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=space.mi6gan.binance
+X-KDE-PluginInfo-Version=0.0.1
+X-KDE-PluginInfo-Category=Online Services
+
+X-KDE-ServiceTypes=Plasma/Applet
