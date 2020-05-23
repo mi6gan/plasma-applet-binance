@@ -4,8 +4,8 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 
 Item {
-    Layout.minimumWidth: 250
-    Layout.minimumHeight: 90
+    Layout.minimumWidth: 40
+    Layout.minimumHeight: 30
     Label {
         id: output
         width: parent.width
@@ -17,14 +17,16 @@ Item {
         padding: 20
     }
     Timer {
-        interval: 10 * 1000
+        id: timer
+        interval: plasmoid.configuration.interval * 1000
         repeat: true
         running: true
         triggeredOnStart: true
         onTriggered: {
             const api = 'https://api.binance.com/api/v3/ticker/price'
-            const base = 'BTC'
-            const quote = 'USDT'
+            const currencies = plasmoid.configuration.ticker.split('/')
+            const base = currencies[0];
+            const quote = currencies[1];
             const url = `${api}?symbol=${base}${quote}`
             const xhr = new XMLHttpRequest()
             xhr.onload = () => {
