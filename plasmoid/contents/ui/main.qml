@@ -1,17 +1,20 @@
 import QtQuick 2.4
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
-import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
 Item {
     Layout.minimumWidth: 250
     Layout.minimumHeight: 90
-    PlasmaComponents.Label {
+    Label {
         id: output
         width: parent.width
         height: parent.height
         font.pointSize: 100
         fontSizeMode: Text.Fit
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        padding: 20
     }
     Timer {
         interval: 10 * 1000
