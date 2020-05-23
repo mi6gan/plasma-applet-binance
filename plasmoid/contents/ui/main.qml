@@ -4,12 +4,13 @@ import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 
 Item {
-    Layout.minimumWidth: 40
+    Layout.minimumWidth: 120
     Layout.minimumHeight: 30
     Label {
         id: output
         width: parent.width
         height: parent.height
+        minimumPointSize: 10
         font.pointSize: 100
         fontSizeMode: Text.Fit
         horizontalAlignment: Text.AlignHCenter
@@ -18,10 +19,10 @@ Item {
     }
     Timer {
         id: timer
-        interval: plasmoid.configuration.interval * 1000
         repeat: true
         running: true
         triggeredOnStart: true
+        interval: plasmoid.configuration.interval * 1000
         onTriggered: {
             const api = 'https://api.binance.com/api/v3/ticker/price'
             const currencies = plasmoid.configuration.ticker.split('/')
@@ -38,5 +39,14 @@ Item {
             xhr.send('')
         }
 
+    }
+    Connections {
+        target: plasmoid.configuration
+        onIntervalChanged: {
+            timer.restart();
+        }
+        onTickerChanged: {
+            timer.restart();
+        }
     }
 }

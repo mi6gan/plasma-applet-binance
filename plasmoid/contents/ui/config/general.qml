@@ -7,10 +7,8 @@ import org.kde.plasma.plasmoid 2.0
 
 Item {
     Layout.fillWidth: true
-
-    property string cfg_ticker: ticker_field.currentText
+    property string cfg_ticker
     property alias cfg_interval: interval_field.value
-
     Grid {
         Layout.fillWidth: true
         columns: 2
@@ -24,10 +22,9 @@ Item {
                 'ETH/USDT', 
                 'ETH/BTC',
             ]
-            onActivated: function(index) {
+            onActivated: {
                 cfg_ticker = ticker_field.currentText
             }
-            currentIndex: ticker_field.find(cfg_ticker)
         }
 
         PlasmaComponents.Label {
@@ -39,9 +36,18 @@ Item {
             from: 1
             to: 86400
             stepSize: 1
-            textFromValue: function(value) {
+            onValueModified: {
+                cfg_interval = interval_field.value
+            }
+            function textFromValue(value) {
                 return `${value} s`;
             }
         }
     }
+    Component.onCompleted: {
+        cfg_ticker = plasmoid.configuration.ticker
+        cfg_interval = plasmoid.configuration.interval
+        ticker_field.currentIndex = ticker_field.find(cfg_ticker)
+    }
+
 }
