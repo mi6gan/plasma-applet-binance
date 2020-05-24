@@ -5,6 +5,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 
+import "../../code/constants.js" as Constants
+
 Item {
     Layout.fillWidth: true
     property string cfg_ticker
@@ -17,11 +19,7 @@ Item {
         }
         ComboBox {
             id: ticker_field
-            model: [
-                'BTC/USDT', 
-                'ETH/USDT', 
-                'ETH/BTC',
-            ]
+            model: Constants.tickers
             onActivated: {
                 cfg_ticker = ticker_field.currentText
             }
